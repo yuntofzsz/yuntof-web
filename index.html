@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nanjing Yunyan Tuofang Technology Co., Ltd.</title>
+    <meta name="description" content="Nanjing Yunyan Tuofang - Redefining Laboratory Intelligence with G4 OS.">
+    <title>Yunyan Tuofang | Future of Thermal Process</title>
     <style>
         :root {
-            --bg-dark: #050505;
+            --bg-dark: #0a0a0a;
             --text-main: #ffffff;
-            --text-muted: #888888;
-            --accent-blue: #2563eb;
-            --accent-cyan: #06b6d4;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-muted: #9ca3af;
+            --accent-primary: #f97316; /* 炉火橙 */
+            --accent-glow: rgba(249, 115, 22, 0.15);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
@@ -29,253 +30,317 @@
             position: relative;
         }
 
-        /* 背景氛围光效 */
-        .ambient-glow {
-            position: absolute;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80vw;
-            height: 80vw;
-            background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, rgba(0,0,0,0) 70%);
+        /* 动态背景画布 */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            pointer-events: none;
+            opacity: 0.4;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
             width: 100%;
+            z-index: 1;
         }
 
-        /* 顶部导航 */
+        /* 导航 */
         nav {
-            padding: 30px 0;
+            padding: 40px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            opacity: 0;
-            animation: fadeInDown 1s ease forwards;
         }
 
         .logo {
-            font-weight: 800;
+            font-weight: 700;
             font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, #fff, #bbb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            border: 1px solid var(--glass-border);
+            letter-spacing: 1.5px;
+            color: #fff;
+            border: 1px solid var(--card-border);
             padding: 8px 16px;
-            border-radius: 100px;
-            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
         }
 
-        /* Hero 主视觉 */
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        /* 主视觉 */
         .hero {
-            padding: 120px 0 80px;
-            text-align: left;
+            padding: 100px 0 80px;
+            max-width: 800px;
         }
 
         .tag {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             font-size: 12px;
             font-weight: 600;
-            color: var(--accent-cyan);
-            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-primary);
+            background: var(--accent-glow);
             padding: 6px 12px;
-            border-radius: 4px;
+            border-radius: 100px;
             margin-bottom: 24px;
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            opacity: 0;
-            animation: slideUp 0.8s ease 0.2s forwards;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-size: clamp(48px, 6vw, 88px);
+            font-size: clamp(48px, 6vw, 80px);
             font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
             margin-bottom: 32px;
-            opacity: 0;
-            animation: slideUp 0.8s ease 0.3s forwards;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: clamp(18px, 3vw, 22px);
+            font-size: clamp(18px, 2.5vw, 24px);
             color: var(--text-muted);
-            max-width: 600px;
-            font-weight: 400;
-            opacity: 0;
-            animation: slideUp 0.8s ease 0.4s forwards;
+            max-width: 640px;
+            font-weight: 300;
         }
 
-        /* 核心能力网格 */
+        /* Bento Grid 布局 */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(12, 1fr);
             gap: 24px;
             margin-bottom: 120px;
-            opacity: 0;
-            animation: slideUp 0.8s ease 0.6s forwards;
         }
 
         .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             padding: 40px;
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 240px;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        /* 布局控制 */
+        .card.col-4 { grid-column: span 4; }
+        .card.col-8 { grid-column: span 8; }
+        .card.col-6 { grid-column: span 6; }
+
+        @media (max-width: 900px) {
+            .card.col-4, .card.col-8, .card.col-6 { grid-column: span 12; }
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-4px);
         }
 
         .card h3 {
             font-size: 20px;
-            font-weight: 600;
             margin-bottom: 12px;
             color: #fff;
+            z-index: 2;
         }
 
         .card p {
             font-size: 15px;
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.6;
+            z-index: 2;
         }
 
-        /* 装饰线 */
-        .card::before {
-            content: '';
+        .card-icon {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
+            top: 24px;
+            right: 24px;
+            font-size: 24px;
+            opacity: 0.2;
+            transition: opacity 0.3s;
         }
-        .card:hover::before { opacity: 1; }
+        
+        .card:hover .card-icon { opacity: 0.8; color: var(--accent-primary); }
 
-        /* 底部 */
+        /* 页脚 */
         footer {
-            margin-top: auto;
-            border-top: 1px solid #1a1a1a;
+            border-top: 1px solid var(--card-border);
             padding: 60px 0;
-            font-size: 14px;
-            color: var(--text-muted);
+            margin-top: auto;
         }
 
         .footer-content {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             flex-wrap: wrap;
             gap: 40px;
         }
 
-        .footer-col h4 {
+        .footer-logo h4 {
             color: #fff;
-            margin-bottom: 20px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 16px;
+            margin-bottom: 8px;
         }
 
-        .footer-col p { margin-bottom: 10px; }
-        .footer-col a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-        .footer-col a:hover { color: #fff; }
-
-        /* 动画关键帧 */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .footer-logo p {
+            color: var(--text-muted);
+            font-size: 13px;
         }
 
-        @media (max-width: 768px) {
-            .hero { padding: 80px 0 60px; }
-            h1 { font-size: 42px; }
-            .footer-content { flex-direction: column; }
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s;
         }
+
+        .contact-btn:hover {
+            background: var(--accent-primary);
+            color: #fff;
+        }
+
     </style>
 </head>
 <body>
-
-    <div class="ambient-glow"></div>
+    <canvas id="canvas-bg"></canvas>
 
     <div class="container">
         <nav>
             <div class="logo">YUNTOF &middot; LABS</div>
+            <div style="font-size: 12px; color: var(--text-muted);">
+                <span class="status-dot"></span>System Operational
+            </div>
         </nav>
 
         <section class="hero">
-            <span class="tag">Stealth Mode &middot; v0.9 Beta</span>
-            <h1>
-                <span class="gradient-text">Redefining</span><br>
-                <span class="gradient-text">Lab Intelligence.</span>
-            </h1>
+            <span class="tag">Stealth Mode &middot; G4 Prototype</span>
+            <h1>Reinventing<br>Thermal Process.</h1>
             <p>
-                G4 OS is the first operating system built to liberate material scientists from hardware constraints. Data-driven, autonomous, and secure.
+                Yunyan Tuofang brings modern OS, IoT, and AI to the most fundamental laboratory equipment. We turn heat into data.
             </p>
         </section>
 
         <section class="grid">
-            <div class="card">
-                <h3>Native Traceability</h3>
-                <p>Every experiment is a data point. We provide military-grade data logging and structured storage for high-temperature processes.</p>
+            <div class="card col-8">
+                <div class="card-icon">⚡</div>
+                <h3>G4 Operating System</h3>
+                <p>The first embedded OS designed specifically for material science. Precise control, native cloud sync, and fail-safe logic.</p>
             </div>
-            <div class="card">
-                <h3>AI Infrastructure</h3>
-                <p>Hardware is temporary; data is forever. We build the clean, contextualized data pipelines that power tomorrow's AI models.</p>
+            
+            <div class="card col-4">
+                <div class="card-icon">🔒</div>
+                <h3>Black Box</h3>
+                <p>Military-grade data logging. Every second of your experiment is traceable.</p>
             </div>
-            <div class="card">
-                <h3>Secure & Remote</h3>
-                <p>Monitor critical equipment status from anywhere. Enterprise-grade security meets consumer-grade user experience.</p>
+
+            <div class="card col-4">
+                <div class="card-icon">📱</div>
+                <h3>Remote Monitor</h3>
+                <p>Monitor status via BLE & 4G. Freedom from the lab bench.</p>
+            </div>
+
+            <div class="card col-8">
+                <div class="card-icon">🤖</div>
+                <h3>AI Ready Infrastructure</h3>
+                <p>We don't just store data; we structure it. Preparing your lab for the future of AI-driven material discovery.</p>
             </div>
         </section>
 
         <footer>
             <div class="container footer-content">
-                <div class="footer-col">
-                    <h4>Nanjing Yunyan Tuofang</h4>
-                    <p>Technology Co., Ltd.</p>
-                    <p style="opacity: 0.5;">D-U-N-S: 519304647</p>
+                <div class="footer-logo">
+                    <h4>Nanjing Yunyan Tuofang Technology Co., Ltd.</h4>
+                    <p>No. 58-3 Fangjia Ying, Gulou District, Nanjing</p>
+                    <p style="margin-top: 10px; opacity: 0.5; font-family: monospace;">D-U-N-S: 519304647</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <p><a href="mailto:zsz@yuntof.com">zsz@yuntof.com</a></p>
-                    <p>+86 178 4999 3613</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Headquarters</h4>
-                    <p>No. 58-3 Fangjia Ying</p>
-                    <p>Gulou District, Nanjing</p>
-                    <p>Jiangsu, China</p>
+                <div>
+                    <a href="mailto:zsz@yuntof.com" class="contact-btn">Contact Us</a>
                 </div>
             </div>
-            <div style="margin-top: 40px; text-align: center; opacity: 0.3; font-size: 12px;">
-                &copy; 2025 Yunyan Tuofang Technology. All systems operational.
+            <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #444;">
+                &copy; 2025 Yunyan Tuofang. All rights reserved.
             </div>
         </footer>
     </div>
 
+    <script>
+        // 极简的粒子背景动画
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < 50; i++) { // 粒子数量
+                particles.push(new Particle());
+            }
+        }
+        init();
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
