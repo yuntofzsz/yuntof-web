@@ -1,319 +1,453 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Nanjing Yunyan Tuofang Technology Co., Ltd. - The Digital Infrastructure for Material Science.">
-    <title>Nanjing Yunyan Tuofang Technology Co., Ltd. | YUNTOF</title>
-    <style>
-        /* --- 核心视觉变量 (Brand Identity) --- */
-        :root {
-            --brand-main: #005F6B;       /* 智造青 (主色铺满) */
-            --brand-dark: #003e46;       /* 深青色 (渐变深部) */
-            --accent: #00D2D3;           /* 亮青色 (按钮/高光) */
-            --text-white: #FFFFFF;       /* 纯白 (标题) */
-            --text-gray: #E0E6E7;        /* 灰白 (正文) */
-            --glass-bg: rgba(0, 95, 107, 0.85); /* 磨砂玻璃背景 */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#005F6B" />
+  <meta name="description" content="Nanjing Yunyan Tuofang - Redefining Laboratory Intelligence." />
 
-        /* --- 基础重置 --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-            background-color: var(--brand-dark);
-            color: var(--text-gray);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
+  <title>Nanjing Yunyan Tuofang Technology Co., Ltd. | YUNTOF</title>
 
-        /* --- 导航栏 (Mobile Adaptive) --- */
-        .navbar {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 62, 70, 0.9);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; padding: 0 24px;
-            height: 72px; display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo {
-            font-size: 20px; font-weight: 800; color: var(--text-white);
-            display: flex; align-items: center; gap: 10px; letter-spacing: 1px;
-        }
-        
-        /* 桌面端菜单 */
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.8); }
-        .nav-links a:hover { color: var(--accent); }
-        .nav-btn {
-            padding: 8px 20px; border: 1px solid var(--accent); color: var(--accent) !important;
-            border-radius: 20px; font-size: 14px;
-        }
+  <link rel="icon" type="image/svg+xml"
+    href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="%23005F6B"/><path d="M48 52.5 L10 32.5 L10 74 L48 95 Z" fill="%23FFFFFF"/><path d="M52 52.5 L90 32.5 L90 74 L52 95 Z" fill="%23FFFFFF"/><path d="M50 48.5 L13 29 L50 9.5 L87 29 Z" fill="%23FFFFFF"/></svg>' />
 
-        /* 移动端汉堡菜单按钮 (默认隐藏) */
-        .menu-toggle { display: none; cursor: pointer; }
-        .bar { display: block; width: 25px; height: 2px; margin: 5px auto; background-color: white; transition: 0.3s; }
+  <style>
+    /* =========================================================
+       YUNTOF | Immersive Teal (Design by GPT-4o, Copy by Gemini)
+       ========================================================= */
 
-        /* --- Hero 主视觉 (沉浸式青色) --- */
-        .hero {
-            padding-top: 140px; padding-bottom: 100px; padding-left: 24px; padding-right: 24px;
-            background: linear-gradient(135deg, var(--brand-main) 0%, var(--brand-dark) 100%);
-            text-align: center; position: relative;
-        }
-        .hero::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100px;
-            background: linear-gradient(to bottom, transparent, var(--brand-dark));
-        }
-        
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 800; color: var(--text-white);
-            margin-bottom: 24px; line-height: 1.1;
-        }
-        .hero p {
-            font-size: 18px; max-width: 700px; margin: 0 auto 40px;
-            color: rgba(255,255,255,0.8); font-weight: 300;
-        }
-        .cta-button {
-            display: inline-block; padding: 16px 40px;
-            background-color: var(--accent); color: #003e46;
-            font-weight: 700; border-radius: 30px; font-size: 16px;
-            box-shadow: 0 10px 30px rgba(0, 210, 211, 0.3);
-        }
-        .cta-button:active { transform: scale(0.98); }
+    :root{
+      --brand-main:#005F6B;        /* 智造青 */
+      --brand-dark:#003e46;        /* 深青 */
+      --brand-deeper:#041a1d;      /* 极夜青 */
+      --accent:#00D2D3;            /* 高光青 */
+      --text:#FFFFFF;
+      --text-dim:rgba(255,255,255,.85);
+      --text-faint:rgba(255,255,255,.60);
+      --border:rgba(255,255,255,.12);
+      --glass:rgba(0,62,70,.85);
+      
+      --shadow: 0 24px 70px rgba(0,0,0,.45);
+      --radius: 26px;
+      --max: 1180px;
+      --nav-h: 76px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
 
-        /* --- 核心特征 (Grid Layout) --- */
-        .section { padding: 100px 0; background-color: var(--brand-dark); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .section-header { text-align: center; margin-bottom: 70px; }
-        .section-header h2 { font-size: 32px; color: var(--text-white); margin-bottom: 12px; }
-        .section-header p { color: rgba(255,255,255,0.6); }
+    /* Reset & Base */
+    *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% -10%, rgba(0,210,211,.15), transparent 60%),
+        radial-gradient(900px 600px at 90% 5%, rgba(255,255,255,.05), transparent 55%),
+        linear-gradient(135deg, var(--brand-main) 0%, var(--brand-dark) 55%, var(--brand-deeper) 100%);
+      min-height:100vh; overflow-x:hidden;
+    }
+    a{ text-decoration:none; color:inherit; transition:0.3s; }
+    img{ max-width:100%; display:block; }
+    ul{ list-style:none; }
+    ::selection{ background: rgba(0,210,211,.3); }
 
-        .feature-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
-        }
-        .feature-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-            padding: 40px; border-radius: 20px; transition: 0.3s;
-        }
-        .feature-card:hover { 
-            background: rgba(255,255,255,0.06); transform: translateY(-5px); 
-            border-color: var(--accent);
-        }
-        .icon { width: 48px; height: 48px; margin-bottom: 24px; }
-        .feature-card h3 { font-size: 20px; color: var(--text-white); margin-bottom: 12px; }
-        
-        /* --- 软件生态展示 (Dark & Premium) --- */
-        .software-section { background: #08282d; position: relative; overflow: hidden; }
-        .sw-wrapper {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-        }
-        .sw-text ul li {
-            margin-bottom: 16px; display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.9);
-        }
-        .check-icon { color: var(--accent); font-weight: bold; }
+    /* Texture */
+    .bg-texture{
+      position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.4;
+      background: radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at 50% 30%, black, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 80%);
+    }
 
-        /* 手机模拟器 */
-        .phone-mockup {
-            background: #121212; border: 8px solid #333; border-radius: 30px;
-            padding: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            max-width: 320px; margin: 0 auto;
-        }
-        .screen {
-            background: #1a1a1a; border-radius: 20px; padding: 20px;
-            height: 500px; display: flex; flex-direction: column; position: relative;
-        }
-        /* 模拟 HMI 界面 */
-        .hmi-header { display: flex; justify-content: space-between; font-size: 12px; color: #666; margin-bottom: 40px; }
-        .hmi-temp { text-align: center; margin-bottom: 40px; }
-        .big-num { font-size: 64px; font-weight: 700; color: var(--text-white); line-height: 1; }
-        .unit { font-size: 24px; color: #666; }
-        .hmi-status { 
-            text-align: center; color: var(--accent); font-size: 14px; 
-            background: rgba(0, 210, 211, 0.1); padding: 6px 16px; 
-            border-radius: 20px; display: inline-block; margin: 0 auto;
-        }
-        .hmi-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: auto; }
-        .ctrl-btn { 
-            background: #333; height: 50px; border-radius: 12px; 
-            display: flex; align-items: center; justify-content: center; font-size: 12px; 
-        }
+    /* Layout */
+    .container{ max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .section{ padding: 100px 0; }
+    .section.alt{ background: linear-gradient(180deg, rgba(255,255,255,.03), transparent); }
+    .divider{ height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent); border:0; margin:0; }
 
-        /* --- 页脚 (合规区) --- */
-        footer {
-            background: #051a1d; padding: 80px 0 40px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 14px;
-        }
-        .footer-cols {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;
-            margin-bottom: 60px;
-        }
-        .f-title { color: var(--text-white); margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
-        .duns-tag {
-            background: rgba(255,255,255,0.1); color: var(--accent); 
-            padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;
-            display: inline-block; margin-top: 8px; border: 1px solid rgba(0, 210, 211, 0.3);
-        }
+    /* Components */
+    .pill{
+      display:inline-flex; align-items:center; gap:10px; padding: 8px 16px;
+      border-radius: 99px; background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15); backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    }
+    .pill .dot{ width:6px; height:6px; border-radius:50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
-        /* --- 移动端响应式处理 (关键!) --- */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed; top: 72px; left: 0; width: 100%;
-                background: rgba(0, 62, 70, 0.98);
-                flex-direction: column; align-items: center;
-                gap: 0; max-height: 0; overflow: hidden; transition: 0.4s;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
-            }
-            .nav-links.active { max-height: 300px; padding: 20px 0; }
-            .nav-links a { width: 100%; text-align: center; padding: 16px; display: block; }
-            .menu-toggle { display: block; }
-            
-            .sw-wrapper { grid-template-columns: 1fr; }
-            .hero { padding-left: 20px; padding-right: 20px; }
-            .hero h1 { font-size: 42px; }
-        }
-    </style>
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding: 14px 24px; border-radius: 99px; font-weight: 600; font-size: 15px;
+      transition: all .2s var(--ease); cursor:pointer;
+    }
+    .btn.primary{
+      background: var(--text); color: var(--brand-dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    }
+    .btn.primary:hover{ transform: translateY(-2px); box-shadow: 0 15px 40px rgba(0,0,0,.3); }
+    .btn.secondary{
+      background: rgba(255,255,255,.1); color: var(--text);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .btn.secondary:hover{ background: rgba(255,255,255,.15); }
+
+    /* Navbar */
+    .nav{
+      position:fixed; top:0; left:0; right:0; height: var(--nav-h); z-index: 1000;
+      background: rgba(0,62,70,.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,.05); transition: all 0.3s;
+    }
+    .nav.scrolled{ background: rgba(0,30,35,.9); border-bottom: 1px solid rgba(255,255,255,.1); }
+    .nav-inner{ height:100%; display:flex; align-items:center; justify-content:space-between; }
+    
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand svg{ width: 32px; height: 32px; }
+    .brand-txt{ display:flex; flex-direction:column; line-height:1.1; }
+    .brand-txt b{ font-size: 16px; letter-spacing: 1px; }
+    .brand-txt span{ font-size: 11px; opacity: 0.6; letter-spacing: 0.5px; }
+
+    .nav-links{ display:flex; gap:30px; }
+    .nav-links a{ font-size: 14px; font-weight: 500; opacity: 0.8; }
+    .nav-links a:hover{ opacity: 1; color: var(--accent); }
+    .nav-links a.cta{ color: var(--accent); }
+
+    /* Mobile Menu */
+    .menu-toggle{ display:none; flex-direction:column; gap:5px; width:24px; }
+    .menu-toggle span{ height:2px; background:white; border-radius:2px; transition:0.3s; }
+    
+    @media (max-width: 768px){
+      .nav-links{
+        position:fixed; top:var(--nav-h); left:0; right:0;
+        background: var(--brand-deeper); flex-direction:column;
+        padding: 30px; gap:20px; text-align:center;
+        transform: translateY(-150%); transition: transform 0.4s var(--ease);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.active{ transform: translateY(0); }
+      .menu-toggle{ display:flex; }
+    }
+
+    /* Hero */
+    .hero{ padding-top: 160px; padding-bottom: 80px; position:relative; }
+    .hero-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:60px; align-items:center; }
+    
+    .hero h1{
+      font-size: clamp(40px, 5vw, 68px); line-height: 1.1; font-weight: 800;
+      margin: 24px 0; letter-spacing: -1px;
+      background: linear-gradient(to right, #fff, #b4eaea);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p{ font-size: 18px; line-height: 1.6; color: var(--text-dim); max-width: 540px; margin-bottom: 40px; font-weight: 300; }
+    
+    .hero-tags{ display:flex; gap:16px; margin-top: 30px; flex-wrap:wrap; }
+    .tag{ display:flex; align-items:center; gap:8px; font-size: 13px; color: var(--text-faint); }
+    .tag svg{ width:16px; height:16px; stroke: var(--accent); }
+
+    /* Phone Mockup */
+    .phone-wrapper{ position:relative; perspective: 1000px; }
+    .phone{
+      width: 320px; margin: 0 auto;
+      background: #000; border-radius: 40px; padding: 12px;
+      box-shadow: 0 40px 80px rgba(0,0,0,.5);
+      border: 1px solid rgba(255,255,255,.15);
+      transform: rotateY(-10deg) rotateX(5deg);
+      transition: transform 0.5s var(--ease);
+    }
+    .phone:hover{ transform: rotateY(0) rotateX(0) translateY(-10px); }
+    
+    .screen{
+      background: linear-gradient(160deg, #0a2e33, #000);
+      border-radius: 30px; height: 600px; overflow:hidden; position:relative;
+      display:flex; flex-direction:column;
+    }
+    /* UI Elements in Phone */
+    .ui-nav{ padding: 20px; display:flex; justify-content:space-between; font-size:12px; color:rgba(255,255,255,.5); }
+    .ui-main{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .ui-temp{ font-size: 72px; font-weight:700; line-height:1; letter-spacing:-2px; }
+    .ui-label{ font-size: 14px; color: var(--accent); margin-top:10px; letter-spacing:1px; text-transform:uppercase; }
+    .ui-graph{ width:100%; height:120px; margin-top:40px; background: linear-gradient(to top, rgba(0,210,211,.1), transparent); position:relative; }
+    .ui-graph::after{ content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--accent); box-shadow: 0 0 15px var(--accent); }
+    
+    /* Feature Grid */
+    .grid-3{ display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:24px; }
+    .card{
+      background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px; padding: 32px; transition: 0.3s;
+    }
+    .card:hover{ background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15); transform: translateY(-5px); }
+    .card-icon{
+      width: 48px; height: 48px; background: rgba(0,210,211,.1); border-radius: 12px;
+      display:flex; align-items:center; justify-content:center; margin-bottom: 20px;
+    }
+    .card-icon svg{ width: 24px; height: 24px; stroke: var(--accent); }
+    .card h3{ font-size: 18px; margin-bottom: 10px; }
+    .card p{ font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+    /* Section Header */
+    .sec-head{ margin-bottom: 60px; max-width: 600px; }
+    .sec-head h2{ font-size: 32px; margin-bottom: 16px; }
+    .sec-head p{ color: var(--text-dim); }
+
+    /* Software Section (Apple Audit) */
+    .software-box{
+      background: rgba(0,0,0,.3); border-radius: 30px; padding: 60px;
+      display:grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items:center;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .check-list li{ display:flex; gap:12px; margin-bottom: 16px; color: var(--text-dim); }
+    .check-list svg{ width:20px; stroke: var(--accent); flex-shrink:0; }
+
+    /* Footer */
+    footer{ background: #021214; padding: 80px 0 40px; border-top: 1px solid rgba(255,255,255,.05); font-size: 14px; }
+    .footer-grid{ display:grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+    .f-col h4{ color: #fff; margin-bottom: 24px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; }
+    .f-col p, .f-col a{ display:block; color: var(--text-faint); margin-bottom: 12px; transition:0.2s; }
+    .f-col a:hover{ color: var(--accent); }
+    .duns{ 
+      display:inline-block; padding: 4px 8px; border: 1px solid rgba(255,255,255,.1); 
+      border-radius: 6px; font-family: monospace; color: var(--text-dim); margin-top: 10px;
+    }
+    .copyright{ border-top: 1px solid rgba(255,255,255,.05); padding-top: 30px; text-align:center; color: var(--text-faint); }
+
+    /* Responsive */
+    @media(max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; text-align:center; }
+      .hero p{ margin-left:auto; margin-right:auto; }
+      .hero-tags{ justify-content:center; }
+      .software-box{ grid-template-columns: 1fr; padding: 30px; }
+      .phone{ margin-top: 40px; }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="bg-texture"></div>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
-                    <path d="M48 52.5 L10 32.5 L10 74 L48 95 Z" fill="#ffffff"/>
-                    <path d="M52 52.5 L90 32.5 L90 74 L52 95 Z" fill="#ffffff"/>
-                    <path d="M50 48.5 L13 29 L50 9.5 L87 29 Z" fill="#ffffff"/>
-                </svg>
-                YUNTOF
-            </a>
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#about">About</a>
-                <a href="#products">Products</a>
-                <a href="#software">Software</a>
-                <a href="#contact" class="nav-btn">Contact Us</a>
-            </div>
+  <nav class="nav" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <svg viewBox="0 0 100 100" fill="none">
+          <path d="M48 52.5 L10 32.5 L10 74 L48 95 Z" fill="#ffffff"/>
+          <path d="M52 52.5 L90 32.5 L90 74 L52 95 Z" fill="#ffffff"/>
+          <path d="M50 48.5 L13 29 L50 9.5 L87 29 Z" fill="#ffffff"/>
+        </svg>
+        <div class="brand-txt">
+          <b>YUNTOF</b>
+          <span>Digital Infrastructure</span>
         </div>
-    </nav>
+      </a>
 
-    <header class="hero">
-        <div style="font-size: 14px; color: var(--accent); margin-bottom: 20px; font-weight: 600; letter-spacing: 1px;">
-            YUNTOF OS v1.0
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#products">硬件产品</a>
+        <a href="#software">软件生态</a>
+        <a href="#about">关于我们</a>
+        <a href="#contact" class="cta">联系合作</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="pill">
+          <span class="dot"></span> YUNTOF OS v1.0 现已就绪
         </div>
-        <h1>Digital Infrastructure<br>for Material Science.</h1>
-        <p>我们致力于将传统高温实验设备数字化。<br>通过软硬件结合，为科研人员提供可追溯、可远程、更安全的实验室环境。</p>
-        <a href="#contact" class="cta-button">Partner with Us</a>
-    </header>
-
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why YUNTOF?</h2>
-                <p>Redefining laboratory intelligence with industrial-grade stability.</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00D2D3" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/></svg></div>
-                    <h3>Smart Hardware</h3>
-                    <p>F-Series Muffle Furnace with embedded IoT controller. High precision temperature control up to 1700°C.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00D2D3" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
-                    <h3>Data Traceability</h3>
-                    <p>Automatic logging of every experiment. Export temperature curves and event logs directly to your phone.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00D2D3" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></div>
-                    <h3>Remote Safety</h3>
-                    <p>Real-time status monitoring. Instant push notifications for over-temperature or hardware anomalies.</p>
-                </div>
-            </div>
+        <h1>重塑高温实验的<br>数字感官。</h1>
+        <p>
+          告别守在炉边的焦虑。我们将工业级稳定性与现代移动体验完美融合，让每一次升温都可被感知，每一条曲线都可被追溯。
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content: inherit;">
+          <a href="#contact" class="btn primary">预约演示</a>
+          <a href="#products" class="btn secondary">探索硬件</a>
         </div>
-    </section>
 
-    <section id="software" class="section software-section">
-        <div class="container sw-wrapper">
-            <div class="sw-text">
-                <h2 style="font-size: 36px; color: #fff; margin-bottom: 24px;">YUNTOF Software Ecosystem</h2>
-                <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px; font-size: 16px;">
-                    We are building a comprehensive app ecosystem to empower researchers. This is the primary reason for our Apple Developer Program enrollment.
-                </p>
-                <ul>
-                    <li><span class="check-icon">✓</span> Native iOS App for remote monitoring</li>
-                    <li><span class="check-icon">✓</span> Cloud Platform for data analysis</li>
-                    <li><span class="check-icon">✓</span> Multi-device management for labs</li>
-                </ul>
-            </div>
-            
-            <div class="phone-mockup">
-                <div class="screen">
-                    <div class="hmi-header">
-                        <span>DEVICE: YTF-1400</span>
-                        <span style="color: #00D2D3;">● 4G ONLINE</span>
-                    </div>
-                    <div class="hmi-temp">
-                        <div class="big-num">1,250</div>
-                        <div class="unit">°C / 1,300°C</div>
-                    </div>
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <div class="hmi-status">HEATING...</div>
-                    </div>
-                    <div style="padding: 15px; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 10px;">
-                        <div style="font-size: 10px; color: #888; margin-bottom: 5px;">PROCESS PROGRESS</div>
-                        <div style="height: 4px; background: #333; border-radius: 2px;">
-                            <div style="width: 65%; height: 100%; background: #00D2D3; border-radius: 2px;"></div>
-                        </div>
-                    </div>
-                    <div class="hmi-controls">
-                        <div class="ctrl-btn" style="color: #fff;">STOP</div>
-                        <div class="ctrl-btn" style="color: #fff;">DETAILS</div>
-                    </div>
-                </div>
-            </div>
+        <div class="hero-tags">
+          <div class="tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            实时监测
+          </div>
+          <div class="tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+            精密智控
+          </div>
+          <div class="tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            数据追溯
+          </div>
         </div>
-    </section>
+      </div>
 
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-cols">
-                <div>
-                    <div class="f-title">Company</div>
-                    <p style="color: #fff; font-weight: 600;">Nanjing Yunyan Tuofang Technology Co., Ltd.</p>
-                    <p>南京云研拓方科技有限责任公司</p>
-                    <div class="duns-tag">D-U-N-S®: 519304647</div>
-                </div>
-                <div>
-                    <div class="f-title">Contact</div>
-                    <p><strong>Business:</strong> zsz@yuntof.com</p>
-                    <p><strong>Phone:</strong> +86 178 4999 3613</p>
-                    <p style="font-size: 12px; color: #666; margin-top: 10px;">(Mon-Fri, 9:00-18:00 CST)</p>
-                </div>
-                <div>
-                    <div class="f-title">Headquarters</div>
-                    <p>No. 58-3 Fangjia Ying, Gulou District</p>
-                    <p>Nanjing, Jiangsu, China</p>
-                    <p style="font-size: 12px; margin-top: 10px; opacity: 0.5;">苏ICP备2026003901号-1</p>
-                </div>
+      <div class="phone-wrapper">
+        <div class="phone">
+          <div class="screen">
+            <div class="ui-nav">
+              <span>YTF-1700 PRO</span>
+              <span style="color:var(--accent)">● ONLINE</span>
             </div>
-            <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; color: #555;">
-                &copy; 2026 YUNTOF Tech. All rights reserved.
+            <div class="ui-main">
+              <div class="ui-label">Current Temperature</div>
+              <div class="ui-temp">1,250<span style="font-size:30px">°C</span></div>
+              <div style="margin-top:20px; color:rgba(255,255,255,.6); font-size:14px;">
+                Target: 1,300°C · Heating
+              </div>
+              <div class="ui-graph"></div>
             </div>
+            <div style="padding:20px; background:rgba(255,255,255,.05); display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+              <div style="text-align:center; padding:15px; background:rgba(255,255,255,.05); border-radius:15px;">
+                <div style="font-size:12px; color:#aaa">ETA</div>
+                <div style="font-size:18px; font-weight:600">45m</div>
+              </div>
+              <div style="text-align:center; padding:15px; background:var(--accent); border-radius:15px; color:#000;">
+                <div style="font-size:12px; opacity:.8">STATUS</div>
+                <div style="font-size:18px; font-weight:800">NORMAL</div>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // 移动端菜单切换脚本
-        function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('active');
-        }
-    </script>
+  <hr class="divider">
+
+  <section class="section" id="products">
+    <div class="container">
+      <div class="sec-head">
+        <h2>不只是设备，<br>是实验室的智能节点。</h2>
+        <p>我们重新设计了高温设备的交互逻辑，去掉了繁琐的仪表，留下了清晰的洞察。</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"/></svg>
+          </div>
+          <h3>智能马弗炉</h3>
+          <p>内置 YUNTOF OS 模组，支持 1200℃-1700℃ 精密控温。开箱即联网，状态随时掌握。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <h3>看不见的，让数据告诉你</h3>
+          <p>不仅是温度，我们记录电压、电流与健康状态。每一次运行记录，都是可复盘的数字资产。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+          </div>
+          <h3>嵌入式智控终端</h3>
+          <p>为传统设备提供“大脑升级”。即插即用，让老旧仪器瞬间具备物联网能力。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="software">
+    <div class="container">
+      <div class="software-box">
+        <div>
+          <div class="pill" style="margin-bottom:20px; background:rgba(0,210,211,.1); border-color:rgba(0,210,211,.3); color:var(--accent)">
+            Mobile & Cloud Ecosystem
+          </div>
+          <h2 style="font-size:36px; margin-bottom:20px;">硬件是躯体，<br>软件是灵魂。</h2>
+          <p style="color:var(--text-dim); margin-bottom:30px; font-size:16px;">
+            我们构建了完整的 App 生态，让科研人员从繁琐的记录中解放出来。
+          </p>
+          <ul class="check-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> iOS 原生 App 远程监控</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 实验数据云端自动归档</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> 异常情况毫秒级推送</li>
+          </ul>
+        </div>
+        <div style="position:relative;">
+          <div style="background: linear-gradient(135deg, rgba(255,255,255,.1), rgba(255,255,255,.02)); border-radius:20px; padding:30px; border:1px solid rgba(255,255,255,.1);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:15px;">
+              <span style="font-size:12px; color:#aaa">RECENT LOGS</span>
+              <span style="font-size:12px; color:var(--accent)">EXPORT CSV</span>
+            </div>
+            <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center;">
+              <div style="width:8px; height:8px; background:var(--accent); border-radius:50%"></div>
+              <div style="flex:1; font-size:14px;">Process Completed</div>
+              <div style="font-size:12px; color:#666">10:42 AM</div>
+            </div>
+            <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center; opacity:.6">
+              <div style="width:8px; height:8px; background:#666; border-radius:50%"></div>
+              <div style="flex:1; font-size:14px;">Cooling Phase</div>
+              <div style="font-size:12px; color:#666">09:15 AM</div>
+            </div>
+            <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center; opacity:.4">
+              <div style="width:8px; height:8px; background:#666; border-radius:50%"></div>
+              <div style="flex:1; font-size:14px;">Heating Started</div>
+              <div style="font-size:12px; color:#666">08:00 AM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-col">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+            <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+              <path d="M48 52.5 L10 32.5 L10 74 L48 95 Z" fill="#ffffff"/>
+              <path d="M52 52.5 L90 32.5 L90 74 L52 95 Z" fill="#ffffff"/>
+              <path d="M50 48.5 L13 29 L50 9.5 L87 29 Z" fill="#ffffff"/>
+            </svg>
+            <span style="font-weight:700; letter-spacing:1px; font-size:16px;">YUNTOF</span>
+          </div>
+          <p style="color:#fff; opacity:1;">Nanjing Yunyan Tuofang Technology Co., Ltd.</p>
+          <p>南京云研拓方科技有限责任公司</p>
+          <div class="duns">D-U-N-S®: 519304647</div>
+        </div>
+        
+        <div class="f-col">
+          <h4>Contact</h4>
+          <a href="mailto:zsz@yuntof.com">zsz@yuntof.com</a>
+          <a href="tel:+8617849993613">+86 178 4999 3613</a>
+          <p style="margin-top:15px; font-size:12px; opacity:0.5">周一至周五 · 9:00-18:00 (CST)</p>
+        </div>
+
+        <div class="f-col">
+          <h4>Address</h4>
+          <p>No. 58-3 Fangjia Ying, Gulou District</p>
+          <p>Nanjing, Jiangsu, China</p>
+          <p style="font-size:12px; opacity:0.5; margin-top:5px;">南京市鼓楼区方家营58-3号</p>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        © 2026 YUNTOF Tech. All rights reserved. &nbsp;|&nbsp; 
+        <a href="https://beian.miit.gov.cn/" target="_blank" style="color:inherit; text-decoration:underline; opacity:.7;">苏ICP备2026003901号-1</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 简单的菜单切换逻辑
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+
+    // 导航栏滚动变色
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 </html>
